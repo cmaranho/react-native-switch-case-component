@@ -11,21 +11,36 @@ npm install react-native-switch-case-component
 ## Usage
 
 ```js
-import SwitchCaseComponent from "react-native-switch-case-component";
+import * as React from 'react';
+import Switch, { Case, Default } from "react-native-switch-case-component";
+
+// ...
+type FormatTypes = 'square' | 'circle';
+
+const Circle = () => {
+  return <View style={styles.circle} />;
+};
+
+const App = () => {
+  const format: FormatTypes = 'circle';
+
+  return (
+    <View style={styles.container}>
+      <Switch<FormatTypes> condition={format}>
+        <Case value="square" style={styles.square} />
+        <Case value="circle">
+          <Circle />
+        </Case>
+        <Default>
+          <Text>Default value!</Text>
+        </Default>
+      </Switch>
+    </View>
+  );
+};
 
 // ...
 
-const format: FormatTypes = 'circle';
-
-<Switch<FormatTypes> condition={format}>
-   <Case value="square" style={styles.square} />
-   <Case value="circle">
-      <Circle />
-    </Case>
-   <Default>
-     <Text>Default value!</Text>
-   </Default>
-</Switch>;
 ```
 
 ## Contributing
