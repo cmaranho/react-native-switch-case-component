@@ -15,7 +15,17 @@ import SwitchCaseComponent from "react-native-switch-case-component";
 
 // ...
 
-const result = await SwitchCaseComponent.multiply(3, 7);
+const format: FormatTypes = 'circle';
+
+<Switch<FormatTypes> condition={format}>
+   <Case value="square" style={styles.square} />
+   <Case value="circle">
+      <Circle />
+    </Case>
+   <Default>
+     <Text>Default value!</Text>
+   </Default>
+</Switch>;
 ```
 
 ## Contributing
