@@ -1,31 +1,48 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import SwitchCaseComponent from 'react-native-switch-case-component';
+import Switch, { Case, Default } from 'react-native-switch-case-component';
+type FormatTypes = 'square' | 'circle';
 
-export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+const Circle = () => {
+  return <View style={styles.circle} />;
+};
 
-  React.useEffect(() => {
-    SwitchCaseComponent.multiply(3, 7).then(setResult);
-  }, []);
+const App = () => {
+  const format: FormatTypes = 'circle';
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Switch<FormatTypes> condition={format}>
+        <Case value="square" style={styles.square} />
+        <Case value="circle">
+          <Circle />
+        </Case>
+        <Default>
+          <Text>Default value!</Text>
+        </Default>
+      </Switch>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  circle: {
+    width: 200,
+    height: 200,
+    borderRadius: 200,
+    backgroundColor: 'red',
+  },
+  square: {
+    width: 200,
+    height: 200,
+    backgroundColor: 'blue',
   },
 });
+
+export default App;
